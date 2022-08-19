@@ -5,6 +5,7 @@ const listaCursos = document.querySelector('#lista-cursos');                    
 const contenedorCarrito = document.querySelector('#lista-carrito tbody');       // El espacio donde se añadirán las cosas al carrito
 const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');             // Botón de vaciar carrito
 let articulosCarrito= [];                                                       // Arreglo de los articulos que se añaden
+let totalArticulos = 0;
 
 
 // Función para los eventListener
@@ -27,6 +28,7 @@ function agregarCurso (e){
     e.preventDefault();  // Evita que al dar click en agregar al carrito de el salto al inicio
     if(e.target.classList.contains('agregar-carrito')){
         const cursoSeleccionado = e.target.parentElement.parentElement;
+        totalArticulos ++;
         leerDatosCurso(cursoSeleccionado); // voy a hacerun curso, con los datos de curso seleccionado
     }
 }
@@ -93,6 +95,7 @@ function carritoHTML(){
         `
         // Agrega el html del carrito en el tbody
         contenedorCarrito.appendChild(row);
+        console.log(totalArticulos);
     })
 }
 
@@ -109,5 +112,8 @@ function limpiarHTML(){
 
 function vaciarCarrito(){
     articulosCarrito= [];
+    totalArticulos = 0;
     limpiarHTML();
+    console.log(totalArticulos)
 }
+
